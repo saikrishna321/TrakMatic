@@ -33,14 +33,11 @@ public class ViewController {
 			data.forEach((value)->{
 	            dataString.add(value.toString());
 	        });
-			return JsonStringConvertor.convert(dataString);
+			return data.toString();
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return "Not a valid json";
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-			return "Json coversion failed";
 		}
-    }
+	}
 	
 }
