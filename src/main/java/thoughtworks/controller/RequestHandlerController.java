@@ -1,31 +1,28 @@
 package thoughtworks.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import thoughtworks.service.JsonWriter;
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@RequestMapping("/")
 public class RequestHandlerController {
-	@Autowired
-	JsonWriter jsonWriter;
 
-	@RequestMapping(value = "/recieveData", method = RequestMethod.POST)
-	public void acceptRequest(HttpServletRequest request, @RequestBody String body) {
-		System.out.println(request.getContentType());
-		System.out.println(body);
-		if (request.getContentType().equals("application/json")) {
-			jsonWriter.writeJson(body, "C://Git/abc.json");
-		} else if (request.getContentType().equals("application/")) {
-			System.out.println("else");
-		} else {
-			System.out.println("Data Received in Invalid Format");
-		}
-	}
+    @RequestMapping(value = "**", method = RequestMethod.POST)
+    public String postHandler(HttpServletRequest request) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        String response = mapper.writeValueAsString(request.getParameterMap());
+        System.out.println(request.getParameterMap().size());
+        return response;
+    }
+
+    @RequestMapping(value = "**", method = RequestMethod.GET)
+    public String getHandler(HttpServletRequest httpServletRequest) {
+        System.out.println(httpServletRequest.getQueryString());
+        return "omg";
+    }
 
 }
