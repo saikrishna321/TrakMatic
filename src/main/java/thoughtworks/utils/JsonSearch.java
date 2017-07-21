@@ -3,10 +3,11 @@ package thoughtworks.utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 public class JsonSearch {
 	
@@ -19,9 +20,9 @@ public class JsonSearch {
 		return false;
 	}
 	
-	public LinkedList<JSONObject> findAll(List<JSONObject> jObjectList, Map<String, String> searchMap ) throws JSONException{
+	public Set<JSONObject> findAll(List<JSONObject> jObjectList, Map<String, String> searchMap ) throws JSONException{
 		
-		LinkedList<JSONObject> resultJson = new LinkedList<JSONObject>();
+		Set<JSONObject> resultJson = new HashSet<JSONObject>();
 		for(JSONObject jObject : jObjectList) {
 			for(Entry<String, String> set : searchMap.entrySet()) {
 				if(find(jObject, set))

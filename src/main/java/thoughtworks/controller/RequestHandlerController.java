@@ -22,15 +22,25 @@ public class RequestHandlerController {
     private IRepository<LinkedList<JSONObject>> repository;
 
     @RequestMapping(value="**", method = RequestMethod.POST)
-    public void postHandler(HttpServletRequest request) throws JsonProcessingException {
-        String json = JsonStringConvertor.convert(request.getParameterMap());
-        repository.store(json);
+    public void postHandler(HttpServletRequest request) {
+        String json;
+		try {
+			json = JsonStringConvertor.convert(request.getParameterMap());
+			repository.store(json);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
     }
 
     @RequestMapping(value="**", method = RequestMethod.GET)
-    public void getHandler(@RequestParam Map<String, String> query) throws JsonProcessingException {
-        String json = JsonStringConvertor.convert(query);
-        repository.store(json);
+    public void getHandler(@RequestParam Map<String, String> query) {
+        String json;
+		try {
+			json = JsonStringConvertor.convert(query);
+	        repository.store(json);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
     }
 
 }
