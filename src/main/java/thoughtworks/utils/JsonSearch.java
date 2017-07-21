@@ -23,11 +23,17 @@ public class JsonSearch {
 	public Set<JSONObject> findAll(List<JSONObject> jObjectList, Map<String, String> searchMap ) throws JSONException{
 		
 		Set<JSONObject> resultJson = new HashSet<JSONObject>();
+		
 		for(JSONObject jObject : jObjectList) {
+			boolean isPresent=true;
 			for(Entry<String, String> set : searchMap.entrySet()) {
-				if(find(jObject, set))
-					resultJson.add(jObject);
+				if(!find(jObject, set)){
+					isPresent=false;
+					break;
+				}
 			}
+			if(isPresent)
+				resultJson.add(jObject);
 		}
 	
 		return resultJson;
