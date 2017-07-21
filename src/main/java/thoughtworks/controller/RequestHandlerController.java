@@ -1,9 +1,10 @@
 package thoughtworks.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import thoughtworks.utils.JsonStringConvertor;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,18 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/")
 public class RequestHandlerController {
 
-    @RequestMapping(value = "**", method = RequestMethod.POST)
-    public String postHandler(HttpServletRequest request) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        String response = mapper.writeValueAsString(request.getParameterMap());
-        System.out.println(request.getParameterMap().size());
-        return response;
+    @RequestMapping(value="**", method = RequestMethod.POST)
+    public String postHandler(HttpServletRequest request) throws JsonProcessingException {
+        return JsonStringConvertor.convert(request.getParameterMap());
     }
 
-    @RequestMapping(value = "**", method = RequestMethod.GET)
-    public String getHandler(HttpServletRequest httpServletRequest) {
-        System.out.println(httpServletRequest.getQueryString());
-        return "omg";
+    @RequestMapping(value="**", method = RequestMethod.GET)
+    public String getHandler(HttpServletRequest request) throws JsonProcessingException {
+        return JsonStringConvertor.convert(request.getParameterMap());
     }
 
 }
