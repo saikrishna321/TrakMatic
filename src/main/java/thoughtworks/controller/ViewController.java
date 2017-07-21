@@ -19,7 +19,7 @@ public class ViewController {
     private IRepository<LinkedList<Object>> repository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getHandler(@RequestParam Map<String, String[]> query) throws Exception {
+    public String getHandler(@RequestParam Map<String, String> query) throws Exception {
         return JsonStringConvertor.convert(repository.readData(query));
     }
 	

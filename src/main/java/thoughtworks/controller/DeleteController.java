@@ -19,7 +19,7 @@ public class DeleteController {
     private IRepository<LinkedList<Object>> repository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public void getHandler(@RequestParam Map<String, String[]> query) throws Exception {
+    public void getHandler(@RequestParam Map<String, String> query) throws Exception {
         repository.deleteData(query);
     }
 

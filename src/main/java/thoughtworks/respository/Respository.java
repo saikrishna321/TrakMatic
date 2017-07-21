@@ -22,12 +22,12 @@ public class Respository implements IRepository<LinkedList<Object>> {
     }
 
     @Override
-    public LinkedList<Object> readData( Map<String, String[]> parameters) {
+    public LinkedList<Object> readData( Map<String, String> parameters) {
         return null;
     }
 
     @Override
-    public void deleteData( Map<String, String[]> data) {
+    public void deleteData( Map<String, String> data) {
 
     }
 

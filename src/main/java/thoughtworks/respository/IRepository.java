@@ -8,7 +8,7 @@ import java.util.Map;
 public interface IRepository<T> {
     public void store(String json);
 
-    public T readData( Map<String, String[]> parameters );
+    public T readData( Map<String, String> parameters );
 
-    public void deleteData( Map<String, String[]> data);
+    public void deleteData( Map<String, String> data);
 }
