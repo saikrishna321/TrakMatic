@@ -10,5 +10,5 @@ public interface IRepository<T> {
 
     public T readData( Map<String, String> parameters );
 
-    public void deleteData( Map<String, String> data);
+    public void deleteData( Map<String, String> parameters);
 }

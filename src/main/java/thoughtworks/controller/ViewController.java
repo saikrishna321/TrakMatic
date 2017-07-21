@@ -1,5 +1,6 @@
 package thoughtworks.controller;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,11 +17,16 @@ import java.util.Map;
 public class ViewController {
 
     @Autowired
-    private IRepository<LinkedList<Object>> repository;
+    private IRepository<LinkedList<JSONObject>> repository;
 
     @RequestMapping(method = RequestMethod.GET)
     public String getHandler(@RequestParam Map<String, String> query) throws Exception {
-        return JsonStringConvertor.convert(repository.readData(query));
+        LinkedList<JSONObject> data = repository.readData(query);
+        LinkedList<String> dataString = new LinkedList<>();
+        data.forEach((value)->{
+            dataString.add(value.toString());
+        });
+        return JsonStringConvertor.convert(dataString);
     }
 	
 }
