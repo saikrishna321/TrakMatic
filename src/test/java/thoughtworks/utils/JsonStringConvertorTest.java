@@ -6,6 +6,8 @@ import org.json.JSONException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 public class JsonStringConvertorTest {
 
     class TestClass {
@@ -23,6 +25,16 @@ public class JsonStringConvertorTest {
         TestClass test = new TestClass("sherlock", "secret");
         String jsonString = JsonStringConvertor.convert(test);
         Assert.assertEquals("{\"name\":\"sherlock\",\"password\":\"secret\"}", jsonString);
+    }
+
+    @Test
+    public void shouldConvertAnyMapWithValueAsStringArrayAndKeyAsStringToJsonString() throws JSONException, JsonProcessingException {
+        HashMap<String, String[]> test = new HashMap<>();
+        test.put("foo", new String[]{"bar"});
+        test.put("js", new String[]{"react"});
+
+        String jsonString = JsonStringConvertor.convert(test);
+        Assert.assertEquals("{\"foo\":\"bar\",\"js\":\"react\"}", jsonString);
     }
 
 

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import thoughtworks.utils.JsonSearch;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,11 +13,11 @@ import java.util.Set;
  * Created by bsneha on 21/07/17.
  */
 @Component
-public class Respository implements IRepository<LinkedList<JSONObject>> {
+public class Repository implements IRepository<LinkedList<JSONObject>> {
 	private LinkedList<JSONObject> data;
 	private JsonSearch jsonSearch;
 
-	public Respository() {
+	public Repository() {
 		this.data = new LinkedList<>();
 		this.jsonSearch = new JsonSearch();
 	}
@@ -32,7 +31,6 @@ public class Respository implements IRepository<LinkedList<JSONObject>> {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
