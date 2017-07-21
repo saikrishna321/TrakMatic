@@ -12,10 +12,8 @@ import java.util.Map;
 public class JsonStringConvertor {
 
     public static String convert( Object data) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        return  mapper.writeValueAsString(data);
+        return  new ObjectMapper().writeValueAsString(data);
     }
-
 
     public static String convert( Map<String,String[]> data) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
