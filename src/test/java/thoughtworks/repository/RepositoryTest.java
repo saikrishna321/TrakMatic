@@ -20,4 +20,15 @@ public class RepositoryTest {
         parameters.put("foo", "bar");
         assertTrue(repository.readData(parameters).size() == 2);
     }
+
+    @Test
+    public void shouldDeleteStringJsonToRepository() throws JSONException, JsonProcessingException {
+        Repository repository = new Repository();
+        repository.store("{\"name\":\"sherlock\",\"foo\":\"bar\"}");
+        repository.store("{\"foo\":\"bar\",\"js\":\"react\"}");
+        HashMap<String, String> parameters = new HashMap<>();
+        parameters.put("foo", "bar");
+        repository.deleteData(parameters);
+        assertTrue(repository.readData(parameters).size() == 0);
+    }
 }
